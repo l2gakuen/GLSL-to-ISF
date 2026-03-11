@@ -16,7 +16,13 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
     float bloomRadius = 2.0;
     float bloomFalloff = 1.2;
     float bloomPulse = 0.5;
-    
+
+    //PULSE CONTROL
+    float pulseSpeed = 3.0;
+    float minDotSize = 0.2;        // Minimum dot size (was 0.2 base)
+    float maxDotSize = 0.35;        // Maximum dot size (was 0.2 + 0.15 = 0.35)
+
+
     // We'll accumulate bloom from neighboring cells
     float totalBloom = 0.0;
     float totalCore = 0.0;
@@ -37,10 +43,10 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
             
             // Unique time offset for this cell
             float timeOffset = dot(cell, vec2(1.2, 3.7)) * 2.0;
-            float pulse = 0.5 + 0.5 * sin(iTime * 3.0 + timeOffset);
+            float pulse = 0.5 + 0.5 * sin(iTime * pulseSpeed + timeOffset);
             
-            // Dot size for this cell
-            float dotSize = 0.2 + 0.15 * pulse;
+            // Dot size for this cell 
+            float dotSize = minDotSize + (maxDotSize - minDotSize) * pulse;
             
             // Core dot (sharp) - only for the center cell to avoid duplicate cores
             if (i == 0 && j == 0) {
