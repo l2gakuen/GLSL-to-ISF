@@ -1,0 +1,26 @@
+{
+  "name": "shadertoy-to-isf",
+  "version": "1.0.0",
+  "description": "Convert Shadertoy GLSL shaders to ISF format",
+  "main": "index.js",
+  "bin": {
+    "stoy2isf": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "shadertoy",
+    "isf",
+    "glsl",
+    "shader",
+    "converter"
+  ],
+  "dependencies": {
+    "commander": "^11.0.0",
+    "chalk": "^4.1.2",
+    "glsl-parser": "^2.0.0"
+  },
+  "author": "",
+  "license": "MIT"
+}
